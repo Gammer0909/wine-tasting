@@ -7,8 +7,6 @@ document.title = "Wine Tasting - Home"
 
 
 function App() {
-
-
   return (
     <div className='App'>
       <Navbar
@@ -29,6 +27,15 @@ function App() {
           </Card>
         </div>
       </div>
+
+      <div className='how-it-works inverse'>
+          <h1>How it Works</h1>
+          <div className='cards'>
+            <Card className="third" title="Log A Wine" image="/assets/images/pick-wine-image.jpg">
+              <p>Add wines you've tasted with just a few clicks</p>
+            </Card>
+          </div>
+        </div>
     </div>
   ) 
 }
