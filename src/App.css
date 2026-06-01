@@ -6,6 +6,13 @@
   min-height: 100vh;
 }
 
+.svg-inline {
+  display: inline;
+  vertical-align: middle;
+  height: 1em;  /* matches surrounding text size */
+  width: 1em;
+}
+
 .nav-bar {
   position: fixed;
   z-index: 999;
@@ -77,7 +84,6 @@
   text-shadow: rgb(0, 0, 0, 0.3) 2px 2px;
 
   border-bottom: 2px solid var(--burgundy-500);
-
 }
 
 .hero .tagline {
@@ -129,7 +135,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  gap: 50px;
+  gap: 70px;
 }
 
 .card {
@@ -174,4 +180,71 @@
 
 .how-it-works h1 {
   color: var(--gold-200);
+}
+
+.cta-sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.cta-sign-up-btn {
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: var(--fs-lg);
+  backdrop-filter: blur(2px);
+  padding: 10px;
+  background-size: 200%;
+  color: white;
+  background-color: var(--burgundy-500);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition: 0.35s ease-out;
+  margin-bottom: 15px;
+}
+
+.cta-sign-up-btn:hover {
+  background-color: var(--gold-600);
+  color: var(--burgundy-500);
+}
+
+
+footer {
+  background: var(--slate-900); 
+  color: var(--slate-100);
+  padding: 4rem 2rem 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid var(--burgundy-500);
+}
+
+footer a {
+  color: var(--slate-200);
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--gold-500);
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-columns .footer-column h3 {
+  color: var(--gold-500);
+  font-family: var(--font-display);
+  margin-bottom: 1rem;
+}
+
+.footer-columns .footer-column ul {
+  list-style: none;
+}
+
+.footer-columns .footer-column li {
+  margin-bottom: 0.5rem;
 }
