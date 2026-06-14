@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import './navbar.jsx'
 
 function Navbar({ loggedIn }) {
@@ -6,25 +7,25 @@ function Navbar({ loggedIn }) {
 
     if (loggedIn) {
         links = <>
-            <h1 className='font-bold'>Dashboard</h1>
-            <h1 className='font-bold'>My Collection</h1>
-            <h1 className='font-bold'>Add Wine</h1>
-            <h1 className='font-bold'>Favorites</h1>
-            <h1 className='font-bold'>Browse</h1>         
+            <h1 className='font-bold'><Link to="/dashboard">Dashboard</Link></h1>
+            <h1 className='font-bold'><a href="#">My Collection</a></h1>
+            <h1 className='font-bold'><a href="#">Add Wine</a></h1>
+            <h1 className='font-bold'><a href="#">Favorite</a></h1>
+            <h1 className='font-bold'><a href="#">Browse</a></h1>
         </>
     } else if (!loggedIn) {
         links = <>
-            <h1 className='font-bold'><a href='#'>Home</a></h1>
+            <h1 className='font-bold'><Link to='/'>Home</Link></h1>
             <h1 className='font-bold'><a href='#'>About</a></h1>
             <h1 className='font-bold'><a href='#'>Browse</a></h1>
-            <h1 className='font-bold'><a href='#'>Sign In</a></h1>
+            <h1 className='font-bold'><Link to="/sign-up">Sign-Up</Link></h1>
             <h1 className='font-bold'><a href='#'>Sign Up</a></h1>
         </>
     }
 
     return (
     <div className='nav-bar'>
-        <span className='logo'><h1 className='font-bold'>Wine Tasting</h1></span>
+        <span className='logo'><h1 className='font-bold'><Link to='/'>Wine Tasting</Link></h1></span>
         <div className='nav-links'>
             {links}
         </div>

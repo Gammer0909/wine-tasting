@@ -25,13 +25,9 @@
   border-bottom: 4px solid var(--gold-600);
 }
 
-.nav-bar .logo h1 {
-    color: var(--burgundy-500);
-}
-
 .nav-bar h1 {
+  letter-spacing: var(--ls-normal);
   font-size: var(--fs-3xl);
-  color: var(--rose-500);
   margin-bottom: 0;
 }
 
@@ -41,10 +37,42 @@
   gap: 50px;
 }
 
+.nav-bar .logo h1 a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+  color: var(--burgundy-500);
+  cursor: pointer;
+}
+
+.nav-bar .logo h1 a:visited {
+  color: var(--burgundy-500);
+}
+
+.nav-bar .logo h1 a:active {
+  color: var(--burgundy-700);
+}
+
+.nav-bar .logo a:hover::after {
+  width: 100%;
+}
+
+
+.nav-bar .logo h1 a::after {
+  content: '';
+  height: 2px;
+  bottom: -4px;
+  display: block;
+  position: relative;
+  width: 0px;
+  background-color: var(--burgundy-500);
+  transition: width 0.3s ease;
+}
+
 .nav-bar h1 a {
   text-decoration: none;
   transition: color 0.2s ease;
   color: var(--rose-500);
+  cursor: pointer;
 }
 
 .nav-bar a:visited {
@@ -202,12 +230,12 @@
   border: 1px solid transparent;
   border-radius: 10px;
   transition: 0.35s ease-out;
-  margin-bottom: 15px;
+  margin-bottom: 3rem;
 }
 
 .cta-sign-up-btn:hover {
   background-color: var(--gold-600);
-  color: var(--burgundy-500);
+  color: var(--burgundy-600);
 }
 
 
@@ -215,17 +243,25 @@ footer {
   background: var(--slate-900); 
   color: var(--slate-100);
   padding: 4rem 2rem 2rem;
-  margin-top: 3rem;
   border-top: 1px solid var(--burgundy-500);
 }
 
 footer a {
   color: var(--slate-200);
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 footer a:hover {
   color: var(--gold-500);
+}
+
+footer p {
+  padding: 0;
+  margin: 0;
+  border-top: 2px solid var(--slate-200);
+  padding-top: 15px;
+  color: var(--slate-200);
 }
 
 .footer-columns {
@@ -235,7 +271,7 @@ footer a:hover {
   margin-bottom: 2rem;
 }
 
-.footer-columns .footer-column h3 {
+.footer-columns .footer-column h4 {
   color: var(--gold-500);
   font-family: var(--font-display);
   margin-bottom: 1rem;
