@@ -27,6 +27,14 @@ type Record struct {
 	UUID     string `json:"-"`
 }
 
+// proabably should add a username or first and last support eventually
+//
+// TODO: above
+type User struct {
+	ID    int64  `json:"id"`
+	Email string `json:"email"`
+}
+
 type Server struct {
 	DB *sql.DB
 }
@@ -103,6 +111,7 @@ func main() {
 
 	handler := http.NewServeMux()
 	handler.HandleFunc("/api/signup", s.HandleSignUp)
+	handler.HandleFunc("GET /api/users/{uuid}", s.GetUserFromID)
 
 	server := &http.Server{
 		Addr:    ":8080",
@@ -174,6 +183,52 @@ func (s *Server) HandleSignUp(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain")
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintln(w, re.UUID)
+}
+
+// GET /
+func (s *Server) GetUserFromID(w http.ResponseWriter, r *http.Request) {
+	uuidStr := r.PathValue("uuid")
+
+	userID, err := uuid.Parse(uuidStr)
+	if err != nil {
+		log.Println("Error parsing UUID from string: ", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	// uuid is valid, get users info
+	user, err := s.fetchUserByID(userID.String())
+	if err != nil {
+		log.Println("Error retreiving record: ", err)
+		http.Error(w, "Internal server error.", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(user)
+
+}
+
+func (s *Server) fetchUserByID(userID string) (u *User, err error) {
+	var rec User
+	var userUUID string
+	var password string
+
+	row := s.DB.QueryRow(`SELECT id, email, uuid, FROM users WHERE uuid = ?`, userID)
+	err = row.Scan(&rec.ID, &rec.Email, &password, &userUUID)
+	if errors.Is(err, sql.ErrNoRows) {
+		return nil, err
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	if userUUID != userID {
+		// somehow DB fetched wrong data?
+		return nil, fmt.Errorf("database retrieved mismatching user record: %s when %s was expected.", userUUID, userID)
+	}
+
+	return &rec, nil
 }
 
 func HashPassword(password string) (string, error) {
