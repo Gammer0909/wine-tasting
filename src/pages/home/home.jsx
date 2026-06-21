@@ -2,7 +2,7 @@ import Navbar from '/src/components/navbar'
 import Hero from '/src/components/hero'
 import Card from '/src/components/card'
 import Footer from '/src/components/footer'
-import '../..//App.css'
+import '../../App.css'
 import { useCookies } from 'react-cookie'
 
 document.title = "Wine Tasting - Home"
@@ -44,7 +44,7 @@ function Home() {
               <p>Add wines you've tried with just a few clicks</p>
             </Card>
             <Card className="third" title="Rate & Review" image="/assets/images/take-notes-image.jpg">
-              <p>Rate, take notes, remember what made it specMl</p>
+              <p>Rate, take notes, remember what made it special</p>
             </Card>
             <Card className="third" title="Discover" image="/assets/images/discover-image.jpg">
               <p>See your taste preferences emerge over time</p>

@@ -214,7 +214,7 @@ func (s *Server) fetchUserByID(userID string) (u *User, err error) {
 	var userUUID string
 	var password string
 
-	row := s.DB.QueryRow(`SELECT id, email, uuid, FROM users WHERE uuid = ?`, userID)
+	row := s.DB.QueryRow(`SELECT * FROM users WHERE uuid = ?`, userID)
 	err = row.Scan(&rec.ID, &rec.Email, &password, &userUUID)
 	if errors.Is(err, sql.ErrNoRows) {
 		return nil, err
